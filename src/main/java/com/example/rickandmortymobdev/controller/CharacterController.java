@@ -10,10 +10,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/character")
 public class CharacterController {
+    //TODO inyection of service
     @GetMapping("/{id}")
     public String getSingleCharacter(@PathVariable Optional<String> id){
 
-        String idTemp = id.isPresent() ? id.get(): "1";
+        String idTemp = id.orElse("1");
 
         System.out.println("en el controlador");
         System.out.println(idTemp);

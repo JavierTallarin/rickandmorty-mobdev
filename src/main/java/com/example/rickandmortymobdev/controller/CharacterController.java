@@ -2,12 +2,14 @@ package com.example.rickandmortymobdev.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RestController
-public class indexController {
+@RequestMapping("/character")
+public class CharacterController {
     @GetMapping("/{id}")
     public String getSingleCharacter(@PathVariable Optional<String> id){
 

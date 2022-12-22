@@ -38,7 +38,9 @@ public class CharacterController {
 
         System.out.println(id.orElse(1));
 
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        CharacterDTO characterDTO = this.characterService.findByid(id.orElse(1));
+
+        return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.rickandmortymobdev.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 
@@ -14,7 +15,7 @@ public class CharacterDTO {
     private String type;
 
     // length of list of episodes
-    private Integer episode_count;
+    private Integer episodeCount;
     private LocationDTO origin;
 
 
@@ -70,12 +71,12 @@ public class CharacterDTO {
     }
 
 
-    public Integer getEpisode_count() {
-        return episode_count;
+    public Integer getEpisodeCount() {
+        return episodeCount;
     }
 
-    public void setEpisode_count(Integer episode_count) {
-        this.episode_count = episode_count;
+    public void setEpisodeCount(Integer episodeCount) {
+        this.episodeCount = episodeCount;
     }
 
     public LocationDTO getOrigin() {

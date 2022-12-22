@@ -18,11 +18,15 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class CharacterController {
 
-    @Autowired
-    CharacterService characterService;
+    private final CharacterService characterService;
 
-    @Autowired
-    LocationService locationService;
+    private final LocationService locationService;
+
+    public CharacterController(CharacterService characterService, LocationService locationService) {
+        this.characterService = characterService;
+        this.locationService = locationService;
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getCharacterTemp(@PathVariable Optional<Integer> id){
@@ -30,6 +34,11 @@ public class CharacterController {
         //System.out.println(id.orElse(1));
 
         CharacterDTO characterDTO = this.characterService.findByid(id.orElse(1));
+
+        // TO DO:
+        //no recibir DTO usar algun modelo
+        //DTO -> capa modelo
+        //objetos -> capa dominio
 
         String urlLocation = characterDTO.getOrigin().getUrl();
         Integer idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
@@ -42,7 +51,7 @@ public class CharacterController {
 
         //modificando y adaptando a la salida
         characterDTO.setOrigin(locationDTO);
-        characterDTO.setEpisode_count(characterDTO.getEpisode().size());
+        characterDTO.setEpisodeCount(characterDTO.getEpisode().size());
         characterDTO.setEpisode(null);
 
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);

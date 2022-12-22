@@ -21,4 +21,5 @@ public class LocationController {
 
         return "{\"id\":\"" + locationTemp + "\"}";
     }
+
 }

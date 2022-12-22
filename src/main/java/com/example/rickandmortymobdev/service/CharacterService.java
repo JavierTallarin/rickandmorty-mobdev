@@ -14,6 +14,9 @@ public class CharacterService {
     @Autowired
     private RestTemplate restTemplate;
 
+    //TODO:
+    // crear interfaz SOLID
+
     //private String UrlBase = "https://rickandmortyapi.com/api/character/";
 
 

@@ -12,8 +12,6 @@ public class CharacterService {
     @Value("${external.rickandmorty.api.character.urlBase}")
     private String URL_BASE;
 
-    @Value("${external.rickandmorty.api.location.urlBase}")
-    private String URL_BASE_LOCATION;
     @Autowired
     private RestTemplate restTemplate;
 
@@ -28,10 +26,5 @@ public class CharacterService {
 
         return characterDTO;
     }
-    public LocationDTO findLocationByid(Integer idTemp) {
 
-        LocationDTO locationDTO = restTemplate.getForObject(this.URL_BASE_LOCATION.concat(idTemp.toString()), LocationDTO.class);
-
-        return locationDTO;
-    }
 }

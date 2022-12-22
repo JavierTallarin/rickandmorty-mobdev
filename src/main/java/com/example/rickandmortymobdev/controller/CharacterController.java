@@ -1,6 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 import com.example.rickandmortymobdev.entity.CharacterDTO;
+import com.example.rickandmortymobdev.entity.LocationDTO;
 import com.example.rickandmortymobdev.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,20 @@ public class CharacterController {
         //System.out.println(id.orElse(1));
 
         CharacterDTO characterDTO = this.characterService.findByid(id.orElse(1));
-        System.out.println(characterDTO.getName());
+        String urlLocation = characterDTO.getOrigin().getUrl();
+        Integer idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
+        System.out.println(idLocation);
+        LocationDTO locationDTO = this.characterService.findLocationByid(idLocation);
+        System.out.println(locationDTO.getResidents());
+
+
+        //modificando y adaptando a la salida
+        characterDTO.setOrigin(locationDTO);
+        characterDTO.setEpisode_count(characterDTO.getEpisode().size());
+        characterDTO.setEpisode(null);
+
+
+
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 
     }

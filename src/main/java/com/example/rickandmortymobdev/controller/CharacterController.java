@@ -1,10 +1,9 @@
 package com.example.rickandmortymobdev.controller;
 
-import com.example.rickandmortymobdev.domain.CharacterDTO;
-import com.example.rickandmortymobdev.domain.LocationDTO;
+import com.example.rickandmortymobdev.model.CharacterDTO;
+import com.example.rickandmortymobdev.model.LocationDTO;
 import com.example.rickandmortymobdev.service.CharacterService;
 import com.example.rickandmortymobdev.service.LocationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -41,18 +41,38 @@ public class CharacterController {
         //objetos -> capa dominio
 
         String urlLocation = characterDTO.getOrigin().getUrl();
-        Integer idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
-        System.out.println(idLocation);
-        //LocationDTO locationDTO = this.characterService.findLocationByid(idLocation);
-        LocationDTO locationDTO = this.locationService.findByid(idLocation);
+        System.out.println(urlLocation.length()+"****");
+        Integer idLocation = null;
+        LocationDTO locationDTO = null;
 
-        System.out.println(locationDTO.getResidents());
+        if(urlLocation.length() > 0){
+            idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
+            locationDTO = this.locationService.findByid(idLocation);
+            System.out.println(locationDTO.getResidents());
 
 
+        }
+
+        if(locationDTO == null){
+            locationDTO = new LocationDTO();
+            locationDTO.setResidents(new ArrayList<>());
+            locationDTO.setName("unknown");
+            locationDTO.setUrl("");
+            locationDTO.setDimension("");
+        }
         //modificando y adaptando a la salida
         characterDTO.setOrigin(locationDTO);
         characterDTO.setEpisodeCount(characterDTO.getEpisode().size());
         characterDTO.setEpisode(null);
+
+        System.out.println(idLocation);
+        //LocationDTO locationDTO = this.characterService.findLocationByid(idLocation);
+
+
+
+
+
+
 
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 

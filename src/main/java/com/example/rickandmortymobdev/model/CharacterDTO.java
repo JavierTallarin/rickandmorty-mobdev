@@ -1,6 +1,5 @@
-package com.example.rickandmortymobdev.domain;
+package com.example.rickandmortymobdev.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 

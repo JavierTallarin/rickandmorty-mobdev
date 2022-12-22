@@ -1,4 +1,4 @@
-package com.example.rickandmortymobdev.domain;
+package com.example.rickandmortymobdev.model;
 
 import lombok.Data;
 

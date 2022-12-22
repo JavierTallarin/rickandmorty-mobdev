@@ -1,6 +1,6 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.CharacterDTO;
+import com.example.rickandmortymobdev.model.CharacterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class CharacterService {
 
 
     public CharacterDTO findByid(Integer idTemp) {
-        System.out.println(this.URL_BASE+idTemp.toString());
+
 
         CharacterDTO characterDTO = restTemplate.getForObject(this.URL_BASE.concat(idTemp.toString()), CharacterDTO.class);
 

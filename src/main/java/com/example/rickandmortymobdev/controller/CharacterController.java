@@ -1,8 +1,10 @@
 package com.example.rickandmortymobdev.controller;
 
+import com.example.rickandmortymobdev.domain.Contract;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import com.example.rickandmortymobdev.service.CharacterService;
+import com.example.rickandmortymobdev.service.IService;
 import com.example.rickandmortymobdev.service.LocationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,13 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class CharacterController {
 
+    private final IService iservice;
     private final CharacterService characterService;
 
     private final LocationService locationService;
 
-    public CharacterController(CharacterService characterService, LocationService locationService) {
+    public CharacterController(IService iservice, CharacterService characterService, LocationService locationService) {
+        this.iservice = iservice;
         this.characterService = characterService;
         this.locationService = locationService;
     }
@@ -68,14 +72,16 @@ public class CharacterController {
         System.out.println(idLocation);
         //LocationDTO locationDTO = this.characterService.findLocationByid(idLocation);
 
-
-
-
-
-
-
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 
+    }
+
+    @GetMapping("/test/{id}")
+    public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
+        Contract contract = iservice.getContract(id.orElse(1));
+
+
+        return new ResponseEntity<>(contract, HttpStatus.OK);
     }
 
 }

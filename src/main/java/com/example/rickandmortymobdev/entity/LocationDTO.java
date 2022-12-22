@@ -1,11 +1,14 @@
 package com.example.rickandmortymobdev.entity;
 
+import lombok.Data;
+
 import java.util.List;
 
-public class Location {
+@Data
+public class LocationDTO {
     private String name;
-    private String dimension;
     private String url;
+    private String dimension;
     private List<String> residents;
 
 

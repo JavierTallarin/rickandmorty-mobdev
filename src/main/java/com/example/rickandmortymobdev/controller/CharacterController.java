@@ -36,10 +36,10 @@ public class CharacterController {
     @GetMapping("/test/{id}")
     public ResponseEntity<CharacterDTO> getCharacterTemp(@PathVariable Optional<Integer> id){
 
-        System.out.println(id.orElse(1));
+        //System.out.println(id.orElse(1));
 
         CharacterDTO characterDTO = this.characterService.findByid(id.orElse(1));
-
+        System.out.println(characterDTO.getName());
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 
     }

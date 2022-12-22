@@ -14,27 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/character")
+@RequestMapping("/api/v1")
 public class CharacterController {
 
     @Autowired
     CharacterService characterService;
 
     @GetMapping("/{id}")
-    //ResponseEntity<CharacterRyM>
-    public String getSingleCharacter(@PathVariable Optional<Integer> id){
-
-        Integer idTemp = id.orElse(1);
-        CharacterDTO character = characterService.findByid(idTemp);
-
-        System.out.println("en el controlador");
-        System.out.println(idTemp);
-
-        //CharacterRyM character = characterService.findByid(idTemp);
-
-        return "{\"id\":\"" + idTemp.toString() + "\"}";
-    }
-    @GetMapping("/test/{id}")
     public ResponseEntity<CharacterDTO> getCharacterTemp(@PathVariable Optional<Integer> id){
 
         //System.out.println(id.orElse(1));
@@ -51,8 +37,6 @@ public class CharacterController {
         characterDTO.setOrigin(locationDTO);
         characterDTO.setEpisode_count(characterDTO.getEpisode().size());
         characterDTO.setEpisode(null);
-
-
 
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
 

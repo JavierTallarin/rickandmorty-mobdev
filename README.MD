@@ -23,4 +23,5 @@ And for windows without gradle
 ### The backend is done with
 - Spring Boot 2.7.7-SNAPSHOT
 - Spring 1.0.15.RELEASE
+- Lombok 1.18.22
 - Java 11

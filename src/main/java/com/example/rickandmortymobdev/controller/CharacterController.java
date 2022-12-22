@@ -1,7 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
-import com.example.rickandmortymobdev.entity.CharacterDTO;
-import com.example.rickandmortymobdev.entity.LocationDTO;
+import com.example.rickandmortymobdev.domain.CharacterDTO;
+import com.example.rickandmortymobdev.domain.LocationDTO;
 import com.example.rickandmortymobdev.service.CharacterService;
 import com.example.rickandmortymobdev.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;

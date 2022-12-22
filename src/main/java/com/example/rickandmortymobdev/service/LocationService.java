@@ -1,6 +1,6 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.entity.LocationDTO;
+import com.example.rickandmortymobdev.domain.LocationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

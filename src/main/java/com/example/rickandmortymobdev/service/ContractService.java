@@ -45,9 +45,10 @@ public class ContractService  implements IService{
         characterDTO.setEpisode(null);
 
         //create Contract with character and location
+        Contract contract = new Contract(characterDTO);
+        contract.setOrigin(locationDTO);
 
 
-
-        return null;
+        return contract;
     }
 }

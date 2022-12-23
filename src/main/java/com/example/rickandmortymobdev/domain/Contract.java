@@ -18,12 +18,14 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(CharacterDTO characterDTO) {
+    public Contract(CharacterDTO characterDTO, LocationDTO locationDTO) {
         this.id = characterDTO.getId();
         this.name = characterDTO.getName();
         this.status = characterDTO.getStatus();
+        this.species = characterDTO.getSpecies();
         this.type = characterDTO.getType();
         this.episode_count = characterDTO.getEpisode().size();
+        this.origin = locationDTO;
     }
 
     public Integer getId() {

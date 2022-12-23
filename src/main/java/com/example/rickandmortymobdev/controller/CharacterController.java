@@ -24,7 +24,7 @@ public class CharacterController {
     }
 
 
-    @GetMapping("/test/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
 
         //temp

@@ -2,17 +2,31 @@ package com.example.rickandmortymobdev.domain;
 
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.springframework.stereotype.Component;
 
-@Component
-public class Contract {
-    private Integer id;
-    private String name;
-    private String status;
-    private String species;
-    private String type;
-    private Integer episode_count;
 
+@Component
+public class Contract{
+    @JsonProperty("id")
+    private Integer id;
+
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("status")
+    private String status;
+    @JsonProperty("species")
+    private String species;
+
+    @JsonProperty("type")
+    private String type;
+
+    @JsonProperty("episode_count")
+    private Integer episodeCount;
+
+    @JsonProperty("origin")
     private LocationDTO origin;
 
     public Contract() {
@@ -24,7 +38,7 @@ public class Contract {
         this.status = characterDTO.getStatus();
         this.species = characterDTO.getSpecies();
         this.type = characterDTO.getType();
-        this.episode_count = characterDTO.getEpisode().size();
+        this.episodeCount = characterDTO.getEpisode().size();
         this.origin = locationDTO;
     }
 
@@ -68,12 +82,12 @@ public class Contract {
         this.type = type;
     }
 
-    public Integer getEpisode_count() {
-        return episode_count;
+    public Integer getEpisodeCount() {
+        return episodeCount;
     }
 
-    public void setEpisode_count(Integer episode_count) {
-        this.episode_count = episode_count;
+    public void setEpisodeCount(Integer episodeCount) {
+        this.episodeCount = episodeCount;
     }
 
     public LocationDTO getOrigin() {

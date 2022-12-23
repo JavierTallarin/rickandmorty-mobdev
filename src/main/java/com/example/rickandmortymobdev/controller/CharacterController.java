@@ -32,50 +32,6 @@ public class CharacterController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CharacterDTO> getCharacterTemp(@PathVariable Optional<Integer> id){
-
-        //System.out.println(id.orElse(1));
-
-        CharacterDTO characterDTO = this.characterService.findByid(id.orElse(1));
-
-        // TO DO:
-        //no recibir DTO usar algun modelo
-        //DTO -> capa modelo
-        //objetos -> capa dominio
-
-        String urlLocation = characterDTO.getOrigin().getUrl();
-        System.out.println(urlLocation.length()+"*****");
-        Integer idLocation = null;
-        LocationDTO locationDTO = null;
-
-        if(urlLocation.length() > 0){
-            idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
-            locationDTO = this.locationService.findByid(idLocation);
-            System.out.println(locationDTO.getResidents());
-
-
-        }
-
-        if(locationDTO == null){
-            locationDTO = new LocationDTO();
-            locationDTO.setResidents(new ArrayList<>());
-            locationDTO.setName("unknown");
-            locationDTO.setUrl("");
-            locationDTO.setDimension("");
-        }
-        //modificando y adaptando a la salida
-        characterDTO.setOrigin(locationDTO);
-        characterDTO.setEpisodeCount(characterDTO.getEpisode().size());
-        characterDTO.setEpisode(null);
-
-        System.out.println(idLocation);
-        //LocationDTO locationDTO = this.characterService.findLocationByid(idLocation);
-
-        return new ResponseEntity<>(characterDTO, HttpStatus.OK);
-
-    }
-
     @GetMapping("/test/{id}")
     public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
 

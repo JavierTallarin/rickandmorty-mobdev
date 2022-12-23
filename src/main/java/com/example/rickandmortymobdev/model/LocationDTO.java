@@ -2,6 +2,7 @@ package com.example.rickandmortymobdev.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -11,6 +12,13 @@ public class LocationDTO {
     private String dimension;
     private List<String> residents;
 
+    public LocationDTO() {
+        this.name = "";
+        this.setResidents(new ArrayList<>());
+        this.setName("unknown");
+        this.setUrl("");
+        this.setDimension("");
+    }
 
     public String getName() {
         return name;

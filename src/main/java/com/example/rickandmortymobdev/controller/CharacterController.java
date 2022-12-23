@@ -45,7 +45,7 @@ public class CharacterController {
         //objetos -> capa dominio
 
         String urlLocation = characterDTO.getOrigin().getUrl();
-        System.out.println(urlLocation.length()+"****");
+        System.out.println(urlLocation.length()+"*****");
         Integer idLocation = null;
         LocationDTO locationDTO = null;
 

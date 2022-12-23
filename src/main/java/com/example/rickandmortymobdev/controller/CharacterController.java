@@ -23,7 +23,6 @@ public class CharacterController {
 
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
 

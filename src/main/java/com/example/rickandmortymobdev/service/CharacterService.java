@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class CharacterService implements IService {
+public class CharacterService {
     @Value("${external.rickandmorty.api.character.urlBase}")
     private String URL_BASE;
 
@@ -38,15 +38,4 @@ public class CharacterService implements IService {
         return characterDTO;
     }
 
-    @Override
-    public Contract getContract(Integer id) {
-        //GET DTO from repository
-        CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
-        //validate origin from character
-        LocationDTO locationDTO = this.iRepository.findLocationById(id);
-        //Create a contract with dto's data
-        //get contract
-
-        return null;
-    }
 }

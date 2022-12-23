@@ -21,7 +21,6 @@ public class ContractService  implements IService{
         CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
-        System.out.println(urlLocation.length()+"*****");
 
         Integer idLocation = null;
         LocationDTO locationDTO = null;
@@ -41,13 +40,10 @@ public class ContractService  implements IService{
         }
         //modificando y adaptando a la salida
         characterDTO.setOrigin(locationDTO);
-        characterDTO.setEpisodeCount(characterDTO.getEpisode().size());
-        characterDTO.setEpisode(null);
+
 
         //create Contract with character and location
-        Contract contract = new Contract(characterDTO);
-        contract.setOrigin(locationDTO);
-
+        Contract contract = new Contract(characterDTO, locationDTO);
 
         return contract;
     }

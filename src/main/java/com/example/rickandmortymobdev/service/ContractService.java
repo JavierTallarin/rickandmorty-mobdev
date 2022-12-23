@@ -6,10 +6,8 @@ import com.example.rickandmortymobdev.model.LocationDTO;
 import com.example.rickandmortymobdev.repository.IRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
-public class ContractService  implements IService{
+public class ContractService  implements IfindById {
     private final IRepository iRepository;
 
     public ContractService(IRepository iRepository) {

@@ -4,7 +4,7 @@ import com.example.rickandmortymobdev.domain.Contract;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface IService {
+public interface IfindById {
 
     public Contract getContract(Integer id);
 

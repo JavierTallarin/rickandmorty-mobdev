@@ -1,7 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 import com.example.rickandmortymobdev.domain.Contract;
-import com.example.rickandmortymobdev.service.IService;
+import com.example.rickandmortymobdev.service.IfindById;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class CharacterController {
 
-    private final IService iservice;
+    private final IfindById ifindById;
 
-    public CharacterController(IService iservice) {
-        this.iservice = iservice;
+    public CharacterController(IfindById ifindById) {
+        this.ifindById = ifindById;
 
     }
 
@@ -32,7 +32,7 @@ public class CharacterController {
             return new ResponseEntity<>(new Contract(), HttpStatus.NOT_FOUND);
         }
 
-        Contract contract = iservice.getContract(id.orElse(1));
+        Contract contract = ifindById.getContract(id.orElse(1));
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }

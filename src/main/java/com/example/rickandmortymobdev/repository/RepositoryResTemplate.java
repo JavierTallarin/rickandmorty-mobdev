@@ -2,7 +2,6 @@ package com.example.rickandmortymobdev.repository;
 
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
-import com.example.rickandmortymobdev.service.IService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

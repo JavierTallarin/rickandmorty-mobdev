@@ -2,8 +2,10 @@ package com.example.rickandmortymobdev.repository;
 
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Component
 public class RepositoryResTemplate implements IRepository{
     private final RestTemplate restTemplate;
 

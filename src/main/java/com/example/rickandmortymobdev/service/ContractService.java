@@ -28,19 +28,11 @@ public class ContractService  implements IService{
         if(urlLocation.length() > 0){
             idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
             locationDTO = this.iRepository.findLocationById(idLocation);
-            System.out.println(locationDTO.getResidents());
         }
 
         if(locationDTO == null){
             locationDTO = new LocationDTO();
-            locationDTO.setResidents(new ArrayList<>());
-            locationDTO.setName("unknown");
-            locationDTO.setUrl("");
-            locationDTO.setDimension("");
         }
-        //modificando y adaptando a la salida
-        characterDTO.setOrigin(locationDTO);
-
 
         //create Contract with character and location
         Contract contract = new Contract(characterDTO, locationDTO);

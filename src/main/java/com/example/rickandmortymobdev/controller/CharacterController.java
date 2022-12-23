@@ -78,8 +78,14 @@ public class CharacterController {
 
     @GetMapping("/test/{id}")
     public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
-        Contract contract = iservice.getContract(id.orElse(1));
 
+        //temp
+        if(id.orElse(1) > 826){
+            System.out.println("entrooo");
+            return new ResponseEntity<>(new Contract(), HttpStatus.NOT_FOUND);
+        }
+
+        Contract contract = iservice.getContract(id.orElse(1));
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }

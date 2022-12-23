@@ -3,7 +3,6 @@ package com.example.rickandmortymobdev.domain;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import org.springframework.stereotype.Component;
 
 

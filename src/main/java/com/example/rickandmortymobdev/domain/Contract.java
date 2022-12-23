@@ -15,6 +15,9 @@ public class Contract {
 
     private LocationDTO origin;
 
+    public Contract() {
+    }
+
     public Contract(CharacterDTO characterDTO) {
         this.id = characterDTO.getId();
         this.name = characterDTO.getName();

@@ -21,7 +21,6 @@ public class ContractService  implements IService{
         CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
-
         Integer idLocation = null;
         LocationDTO locationDTO = null;
 
@@ -34,7 +33,7 @@ public class ContractService  implements IService{
             locationDTO = new LocationDTO();
         }
 
-        //create Contract with character and location
+
         Contract contract = new Contract(characterDTO, locationDTO);
 
         return contract;

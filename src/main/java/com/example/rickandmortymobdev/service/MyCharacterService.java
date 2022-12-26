@@ -7,10 +7,10 @@ import com.example.rickandmortymobdev.repository.IRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContractService  implements IfindById {
+public class MyCharacterService implements IfindById {
     private final IRepository iRepository;
 
-    public ContractService(IRepository iRepository) {
+    public MyCharacterService(IRepository iRepository) {
         this.iRepository = iRepository;
     }
 

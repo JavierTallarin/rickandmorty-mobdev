@@ -9,12 +9,12 @@ import org.springframework.web.client.HttpClientErrorException;
 
 @Setter
 @Getter
-public class NotFoundCharacterException extends HttpClientErrorException{
+public class NotFoundCharacterException extends RuntimeException{
     private String code;
     private String message;
 
     public NotFoundCharacterException(String code, String message) {
-        super(HttpStatus.valueOf("404"));
+        super(message);
         this.code = code;
         this.message = message;
     }

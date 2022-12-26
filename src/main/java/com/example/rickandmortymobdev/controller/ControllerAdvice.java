@@ -1,6 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 
+import com.example.rickandmortymobdev.exception.NotFoundCharacterException;
 import com.example.rickandmortymobdev.model.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +12,9 @@ import org.springframework.web.client.HttpClientErrorException;
 
 @RestControllerAdvice
 public class ControllerAdvice {
-    @ExceptionHandler(value = HttpClientErrorException.class)
-    public ResponseEntity<ErrorDTO> runtimeExceptionHandler(HttpClientErrorException exception) {
-        ErrorDTO errorDTO = ErrorDTO.builder().code(String.valueOf(exception.getStatusCode().value())).message(exception.getMessage()).build();
+    @ExceptionHandler(value = NotFoundCharacterException.class)
+    public ResponseEntity<ErrorDTO> runtimeExceptionHandler(NotFoundCharacterException exception) {
+        ErrorDTO errorDTO = ErrorDTO.builder().code(exception.getCode()).message(exception.getMessage()).build();
 
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 

@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Component
-public class RepositoryResTemplate implements IRepositoryCharacter, IRepositoryLocation {
+public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepositoryLocation {
     @Value("${external.rickandmorty.api.character.urlBase}")
     private String URL_BASE_CHARACTER;
 
@@ -22,7 +22,7 @@ public class RepositoryResTemplate implements IRepositoryCharacter, IRepositoryL
     private final RestTemplate restTemplate;
 
 
-    public RepositoryResTemplate(RestTemplate restTemplate) {
+    public RepositoryCharacterLocation(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

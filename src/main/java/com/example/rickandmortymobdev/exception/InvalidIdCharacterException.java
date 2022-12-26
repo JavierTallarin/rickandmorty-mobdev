@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class InvalidCharacterException extends RuntimeException {
+public class InvalidIdCharacterException extends RuntimeException {
     private String code;
     private String message;
 
-    public InvalidCharacterException(String code, String message) {
+    public InvalidIdCharacterException(String code, String message) {
         super(message);
         this.code = code;
         this.message = message;

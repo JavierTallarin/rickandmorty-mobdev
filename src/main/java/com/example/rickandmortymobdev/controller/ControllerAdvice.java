@@ -1,7 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 
-import com.example.rickandmortymobdev.exception.InvalidCharacterException;
+import com.example.rickandmortymobdev.exception.InvalidIdCharacterException;
 import com.example.rickandmortymobdev.exception.NotFoundCharacterException;
 import com.example.rickandmortymobdev.model.ErrorDTO;
 import org.springframework.http.HttpStatus;
@@ -20,8 +20,8 @@ public class ControllerAdvice {
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 
     }
-    @ExceptionHandler(value = InvalidCharacterException.class)
-    public ResponseEntity<ErrorDTO> invalidCharacterException(InvalidCharacterException exception){
+    @ExceptionHandler(value = InvalidIdCharacterException.class)
+    public ResponseEntity<ErrorDTO> invalidCharacterException(InvalidIdCharacterException exception){
         ErrorDTO errorDTO = ErrorDTO.builder().code("500").message(exception.getMessage()).build();
 
         return  new ResponseEntity<>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);

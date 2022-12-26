@@ -1,22 +1,25 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.MyCharacter;
+import com.example.rickandmortymobdev.domain.CharacterResponse;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
-import com.example.rickandmortymobdev.repository.IRepository;
+import com.example.rickandmortymobdev.repository.IRepositoryCharacter;
+import com.example.rickandmortymobdev.repository.IRepositoryLocation;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MyCharacterService implements IFindById {
-    private final IRepository iRepository;
+    private final IRepositoryCharacter iRepositoryCharacter;
+    private final IRepositoryLocation iRepositoryLocation;
 
-    public MyCharacterService(IRepository iRepository) {
-        this.iRepository = iRepository;
+    public MyCharacterService(IRepositoryCharacter iRepositoryCharacter, IRepositoryLocation iRepositoryLocation) {
+        this.iRepositoryCharacter = iRepositoryCharacter;
+        this.iRepositoryLocation = iRepositoryLocation;
     }
 
     @Override
-    public MyCharacter getContract(String id) {
-        CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
+    public CharacterResponse getContract(String id) {
+        CharacterDTO characterDTO = this.iRepositoryCharacter.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
         String idLocation = null;
@@ -24,7 +27,7 @@ public class MyCharacterService implements IFindById {
 
         if(urlLocation.length() > 0){
             idLocation = urlLocation.substring(urlLocation.length()-1);
-            locationDTO = this.iRepository.findLocationById(idLocation);
+            locationDTO = this.iRepositoryLocation.findLocationById(idLocation);
         }
 
         if(locationDTO == null){
@@ -32,7 +35,7 @@ public class MyCharacterService implements IFindById {
         }
 
 
-        MyCharacter contract = new MyCharacter(characterDTO, locationDTO);
+        CharacterResponse contract = new CharacterResponse(characterDTO, locationDTO);
 
         return contract;
     }

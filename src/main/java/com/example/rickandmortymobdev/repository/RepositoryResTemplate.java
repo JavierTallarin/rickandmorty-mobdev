@@ -37,7 +37,6 @@ public class RepositoryResTemplate implements IRepository{
         }catch(NotFoundCharacterException ex){}
 
 
-
         return  response.getBody();
     }
 

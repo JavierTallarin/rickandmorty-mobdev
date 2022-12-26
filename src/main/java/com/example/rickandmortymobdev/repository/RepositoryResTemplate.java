@@ -1,6 +1,6 @@
 package com.example.rickandmortymobdev.repository;
 
-import com.example.rickandmortymobdev.exception.NotCharacterException;
+import com.example.rickandmortymobdev.exception.NotFoundCharacterException;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +35,7 @@ public class RepositoryResTemplate implements IRepository{
 
         try {
             response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, requestEntity, CharacterDTO.class);
-        }catch(NotCharacterException ex){}
+        }catch(NotFoundCharacterException ex){}
 
         return  response.getBody();
     }

@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
+
 
 @Component
 public class RepositoryResTemplate implements IRepository{
@@ -39,10 +38,10 @@ public class RepositoryResTemplate implements IRepository{
         }catch (HttpStatusCodeException ex){
 
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND){
-                throw  new NotFoundCharacterException("404", "not found character with id : "+String.valueOf(id));
+                throw  new NotFoundCharacterException("404", "not found character with id : "+id);
             }
             if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
-                throw  new InvalidCharacterException("500", "invalid character id : "+String.valueOf(id));
+                throw  new InvalidCharacterException("500", "invalid character id : "+id);
             }
 
 

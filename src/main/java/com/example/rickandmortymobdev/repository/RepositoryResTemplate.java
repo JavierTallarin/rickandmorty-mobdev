@@ -1,8 +1,13 @@
 package com.example.rickandmortymobdev.repository;
 
+import com.example.rickandmortymobdev.exception.NotCharacterException;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,9 +28,16 @@ public class RepositoryResTemplate implements IRepository{
 
     @Override
     public CharacterDTO findCharacterById(Integer id) {
-        CharacterDTO characterDTO = restTemplate.getForObject(this.URL_BASE_CHARACTER.concat(id.toString()), CharacterDTO.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Header", "value");
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+        ResponseEntity<CharacterDTO> response = null;
 
-        return characterDTO;
+        try {
+            response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, requestEntity, CharacterDTO.class);
+        }catch(NotCharacterException ex){}
+
+        return  response.getBody();
     }
 
     @Override

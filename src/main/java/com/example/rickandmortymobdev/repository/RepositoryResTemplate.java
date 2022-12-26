@@ -34,6 +34,7 @@ public class RepositoryResTemplate implements IRepository{
         try {
 
             characterDTO = restTemplate.getForObject(this.URL_BASE_CHARACTER.concat(id), CharacterDTO.class);
+
         }catch (HttpStatusCodeException ex){
 
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND){
@@ -42,7 +43,6 @@ public class RepositoryResTemplate implements IRepository{
             if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
                 throw  new InvalidCharacterException("500", "invalid character id : "+id);
             }
-
 
         }
 

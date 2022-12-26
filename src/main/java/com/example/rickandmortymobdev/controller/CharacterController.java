@@ -1,7 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 import com.example.rickandmortymobdev.domain.CharacterResponse;
-import com.example.rickandmortymobdev.service.IFindById;
+import com.example.rickandmortymobdev.service.IFindCharacterResponseById;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +16,17 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class CharacterController {
 
-    private final IFindById ifindById;
+    private final IFindCharacterResponseById iFindCharacterResponseById;
 
-    public CharacterController(IFindById ifindById) {
-        this.ifindById = ifindById;
+    public CharacterController(IFindCharacterResponseById iFindCharacterResponseById) {
+        this.iFindCharacterResponseById = iFindCharacterResponseById;
 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CharacterResponse> getContract(@PathVariable Optional<String> id){
 
-        CharacterResponse characterResponse = ifindById.getContract(id.orElse(""));
+        CharacterResponse characterResponse = this.iFindCharacterResponseById.getCharacterResponse(id.orElse(""));
 
         return new ResponseEntity<>(characterResponse, HttpStatus.OK);
     }

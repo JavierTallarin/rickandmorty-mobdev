@@ -4,8 +4,8 @@ import com.example.rickandmortymobdev.domain.CharacterResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface IFindById {
+public interface IFindCharacterResponseById {
 
-    public CharacterResponse getContract(String id);
+    public CharacterResponse getCharacterResponse(String id);
 
 }

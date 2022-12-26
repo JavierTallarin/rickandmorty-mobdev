@@ -8,17 +8,17 @@ import com.example.rickandmortymobdev.repository.IRepositoryLocation;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyCharacterService implements IFindById {
+public class CharacterResponseService implements IFindCharacterResponseById {
     private final IRepositoryCharacter iRepositoryCharacter;
     private final IRepositoryLocation iRepositoryLocation;
 
-    public MyCharacterService(IRepositoryCharacter iRepositoryCharacter, IRepositoryLocation iRepositoryLocation) {
+    public CharacterResponseService(IRepositoryCharacter iRepositoryCharacter, IRepositoryLocation iRepositoryLocation) {
         this.iRepositoryCharacter = iRepositoryCharacter;
         this.iRepositoryLocation = iRepositoryLocation;
     }
 
     @Override
-    public CharacterResponse getContract(String id) {
+    public CharacterResponse getCharacterResponse(String id) {
         CharacterDTO characterDTO = this.iRepositoryCharacter.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
@@ -35,8 +35,8 @@ public class MyCharacterService implements IFindById {
         }
 
 
-        CharacterResponse contract = new CharacterResponse(characterDTO, locationDTO);
+        CharacterResponse characterResponse = new CharacterResponse(characterDTO, locationDTO);
 
-        return contract;
+        return characterResponse;
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 public class ControllerAdvice {
     @ExceptionHandler(value = HttpClientErrorException.class)
     public ResponseEntity<ErrorDTO> runtimeExceptionHandler(HttpClientErrorException exception) {
-        ErrorDTO errorDTO = ErrorDTO.builder().code("404").message(exception.getMessage()).build();
+        ErrorDTO errorDTO = ErrorDTO.builder().code(String.valueOf(exception.getStatusCode().value())).message(exception.getMessage()).build();
 
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 

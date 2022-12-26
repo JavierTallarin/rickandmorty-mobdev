@@ -28,14 +28,15 @@ public class RepositoryResTemplate implements IRepository{
 
     @Override
     public CharacterDTO findCharacterById(Integer id) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Header", "value");
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
         ResponseEntity<CharacterDTO> response = null;
 
         try {
-            response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, requestEntity, CharacterDTO.class);
+            response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, this.getRequestEntity(), CharacterDTO.class);
+
         }catch(NotFoundCharacterException ex){}
+
+
 
         return  response.getBody();
     }
@@ -45,5 +46,13 @@ public class RepositoryResTemplate implements IRepository{
         LocationDTO locationDTO = restTemplate.getForObject(this.URL_BASE_LOCATION.concat(id.toString()), LocationDTO.class);
 
         return locationDTO;
+    }
+
+    public HttpEntity<String> getRequestEntity() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Header", "value");
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+
+        return  requestEntity;
     }
 }

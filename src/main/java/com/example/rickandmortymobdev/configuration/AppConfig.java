@@ -16,13 +16,5 @@ public class AppConfig {
         return restTemplateBuilder.build();
     }
 
-    @Bean("HttpEntity")
-    public HttpEntity<String> getRequestEntity() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Header", "value");
-        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-
-        return  requestEntity;
-    }
 
 }

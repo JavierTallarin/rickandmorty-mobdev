@@ -24,9 +24,9 @@ public class CharacterController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MyCharacter> getContract(@PathVariable Optional<Integer> id){
+    public ResponseEntity<MyCharacter> getContract(@PathVariable Optional<String> id){
 
-        MyCharacter contract = ifindById.getContract(id.orElse(1));
+        MyCharacter contract = ifindById.getContract(id.orElse(""));
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }

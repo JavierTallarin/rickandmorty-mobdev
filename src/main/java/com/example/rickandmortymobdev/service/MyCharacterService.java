@@ -15,15 +15,15 @@ public class MyCharacterService implements IFindById {
     }
 
     @Override
-    public MyCharacter getContract(Integer id) {
+    public MyCharacter getContract(String id) {
         CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
-        Integer idLocation = null;
+        String idLocation = null;
         LocationDTO locationDTO = null;
 
         if(urlLocation.length() > 0){
-            idLocation = Integer.valueOf(urlLocation.substring(urlLocation.length()-1));
+            idLocation = urlLocation.substring(urlLocation.length()-1);
             locationDTO = this.iRepository.findLocationById(idLocation);
         }
 

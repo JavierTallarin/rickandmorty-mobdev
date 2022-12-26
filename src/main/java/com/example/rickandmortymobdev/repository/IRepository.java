@@ -5,8 +5,8 @@ import com.example.rickandmortymobdev.model.LocationDTO;
 
 public interface IRepository {
 
-    public CharacterDTO findCharacterById(Integer id);
+    public CharacterDTO findCharacterById(String id);
 
-    public LocationDTO findLocationById(Integer id);
+    public LocationDTO findLocationById(String id);
 
 }

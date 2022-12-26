@@ -1,7 +1,7 @@
 package com.example.rickandmortymobdev.controller;
 
 import com.example.rickandmortymobdev.domain.MyCharacter;
-import com.example.rickandmortymobdev.service.IfindById;
+import com.example.rickandmortymobdev.service.IFindById;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class CharacterController {
 
-    private final IfindById ifindById;
+    private final IFindById ifindById;
 
-    public CharacterController(IfindById ifindById) {
+    public CharacterController(IFindById ifindById) {
         this.ifindById = ifindById;
 
     }

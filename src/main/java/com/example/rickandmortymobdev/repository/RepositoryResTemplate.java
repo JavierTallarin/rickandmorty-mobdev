@@ -20,21 +20,20 @@ public class RepositoryResTemplate implements IRepository{
     @Value("${external.rickandmorty.api.location.urlBase}")
     private String URL_BASE_LOCATION;
     private final RestTemplate restTemplate;
-    private  final HttpEntity<String> requestEntity;
 
 
-    public RepositoryResTemplate(RestTemplate restTemplate, HttpEntity<String> requestEntity) {
+    public RepositoryResTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.requestEntity = requestEntity;
     }
 
     @Override
     public CharacterDTO findCharacterById(String id) {
 
-        ResponseEntity<CharacterDTO> response = null;
+        CharacterDTO characterDTO = null;
 
         try {
-            response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id), HttpMethod.GET, this.requestEntity, CharacterDTO.class);
+
+            characterDTO = restTemplate.getForObject(this.URL_BASE_CHARACTER.concat(id), CharacterDTO.class);
         }catch (HttpStatusCodeException ex){
 
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND){
@@ -47,7 +46,7 @@ public class RepositoryResTemplate implements IRepository{
 
         }
 
-        return  response.getBody();
+        return characterDTO;
     }
 
     @Override

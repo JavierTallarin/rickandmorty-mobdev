@@ -15,7 +15,7 @@ public class NotFoundCharacterException extends RuntimeException {
     private String message;
 
     public NotFoundCharacterException(String code, String message) {
-        super("not found character");
+        super(message);
         this.code = code;
         this.message = message;
     }

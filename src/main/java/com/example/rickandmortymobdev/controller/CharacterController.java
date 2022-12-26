@@ -26,12 +26,6 @@ public class CharacterController {
     @GetMapping("/{id}")
     public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
 
-        //temp
-        if(id.orElse(1) > 826){
-            System.out.println("entrooo");
-            return new ResponseEntity<>(new Contract(), HttpStatus.NOT_FOUND);
-        }
-
         Contract contract = ifindById.getContract(id.orElse(1));
 
         return new ResponseEntity<>(contract, HttpStatus.OK);

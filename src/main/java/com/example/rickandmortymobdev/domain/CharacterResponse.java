@@ -4,6 +4,7 @@ import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
+@NoArgsConstructor
 public class CharacterResponse {
     @JsonProperty("id")
     private Integer id;
@@ -32,8 +34,6 @@ public class CharacterResponse {
     @JsonProperty("origin")
     private LocationDTO origin;
 
-    public CharacterResponse() {
-    }
 
     public CharacterResponse(CharacterDTO characterDTO, LocationDTO locationDTO) {
         this.id = characterDTO.getId();

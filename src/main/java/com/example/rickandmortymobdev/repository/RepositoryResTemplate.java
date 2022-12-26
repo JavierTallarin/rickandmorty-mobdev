@@ -31,10 +31,13 @@ public class RepositoryResTemplate implements IRepository{
 
         ResponseEntity<CharacterDTO> response = null;
 
-        try {
-            response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, this.getRequestEntity(), CharacterDTO.class);
+        if(id > 826){
+            throw  new NotFoundCharacterException("404", "Not Found Character");
+        }
 
-        }catch(NotFoundCharacterException ex){}
+        response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, this.getRequestEntity(), CharacterDTO.class);
+
+
 
 
         return  response.getBody();

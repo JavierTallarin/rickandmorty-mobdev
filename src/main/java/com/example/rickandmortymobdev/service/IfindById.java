@@ -1,11 +1,11 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.Contract;
+import com.example.rickandmortymobdev.domain.MyCharacter;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface IfindById {
 
-    public Contract getContract(Integer id);
+    public MyCharacter getContract(Integer id);
 
 }

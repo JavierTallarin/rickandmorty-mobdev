@@ -1,6 +1,6 @@
 package com.example.rickandmortymobdev.controller;
 
-import com.example.rickandmortymobdev.domain.Contract;
+import com.example.rickandmortymobdev.domain.MyCharacter;
 import com.example.rickandmortymobdev.service.IfindById;
 
 import org.springframework.http.HttpStatus;
@@ -24,9 +24,9 @@ public class CharacterController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contract> getContract(@PathVariable Optional<Integer> id){
+    public ResponseEntity<MyCharacter> getContract(@PathVariable Optional<Integer> id){
 
-        Contract contract = ifindById.getContract(id.orElse(1));
+        MyCharacter contract = ifindById.getContract(id.orElse(1));
 
         return new ResponseEntity<>(contract, HttpStatus.OK);
     }

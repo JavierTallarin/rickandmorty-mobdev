@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class Contract{
+public class MyCharacter {
     @JsonProperty("id")
     private Integer id;
 
@@ -28,10 +28,10 @@ public class Contract{
     @JsonProperty("origin")
     private LocationDTO origin;
 
-    public Contract() {
+    public MyCharacter() {
     }
 
-    public Contract(CharacterDTO characterDTO, LocationDTO locationDTO) {
+    public MyCharacter(CharacterDTO characterDTO, LocationDTO locationDTO) {
         this.id = characterDTO.getId();
         this.name = characterDTO.getName();
         this.status = characterDTO.getStatus();

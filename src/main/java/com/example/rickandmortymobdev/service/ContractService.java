@@ -1,6 +1,6 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.Contract;
+import com.example.rickandmortymobdev.domain.MyCharacter;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import com.example.rickandmortymobdev.repository.IRepository;
@@ -15,7 +15,7 @@ public class ContractService  implements IfindById {
     }
 
     @Override
-    public Contract getContract(Integer id) {
+    public MyCharacter getContract(Integer id) {
         CharacterDTO characterDTO = this.iRepository.findCharacterById(id);
 
         String urlLocation = characterDTO.getOrigin().getUrl();
@@ -32,7 +32,7 @@ public class ContractService  implements IfindById {
         }
 
 
-        Contract contract = new Contract(characterDTO, locationDTO);
+        MyCharacter contract = new MyCharacter(characterDTO, locationDTO);
 
         return contract;
     }

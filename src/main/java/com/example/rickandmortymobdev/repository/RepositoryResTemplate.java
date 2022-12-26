@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -35,7 +36,9 @@ public class RepositoryResTemplate implements IRepository{
         try {
             response = restTemplate.exchange(this.URL_BASE_CHARACTER.concat(id.toString()), HttpMethod.GET, this.requestEntity, CharacterDTO.class);
 
-        }catch(NotFoundCharacterException ex){}
+        }catch(RestClientException ex){
+            throw new NotFoundCharacterException("404", "Not found character");
+        }
 
 
         return  response.getBody();

@@ -14,15 +14,16 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepositoryLocation {
-    @Value("${external.rickandmorty.api.character.urlBase}")
-    private String URL_BASE_CHARACTER;
 
-    @Value("${external.rickandmorty.api.location.urlBase}")
-    private String URL_BASE_LOCATION;
+    private final String urlBaseCharacter;
+
+    private final String urlBaseLocation;
     private final RestTemplate restTemplate;
 
 
-    public RepositoryCharacterLocation(RestTemplate restTemplate) {
+    public RepositoryCharacterLocation(@Value("${external.rickandmorty.api.character.urlBase}") String urlBaseCharacter, @Value("${external.rickandmorty.api.location.urlBase}") String urlBaseLocation, RestTemplate restTemplate) {
+        this.urlBaseCharacter = urlBaseCharacter;
+        this.urlBaseLocation = urlBaseLocation;
         this.restTemplate = restTemplate;
     }
 
@@ -33,15 +34,15 @@ public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepos
 
         try {
 
-            characterDTO = restTemplate.getForObject(this.URL_BASE_CHARACTER.concat(id), CharacterDTO.class);
+            characterDTO = restTemplate.getForObject(this.urlBaseCharacter.concat(id), CharacterDTO.class);
 
         }catch (HttpStatusCodeException ex){
 
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND){
-                throw  new NotFoundCharacterException("404", "not found character");
+                throw  new NotFoundCharacterException(String.valueOf(HttpStatus.NOT_FOUND.value()), "not found character");
             }
             if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
-                throw  new InvalidIdCharacterException("500", "invalid character id");
+                throw  new InvalidIdCharacterException(String.valueOf(HttpStatus.BAD_GATEWAY.value()), "rick and morty external service rejects request for invalid id");
             }
 
         }
@@ -51,7 +52,7 @@ public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepos
 
     @Override
     public LocationDTO findLocationById(String id) {
-        LocationDTO locationDTO = restTemplate.getForObject(this.URL_BASE_LOCATION.concat(id), LocationDTO.class);
+        LocationDTO locationDTO = restTemplate.getForObject(this.urlBaseLocation.concat(id), LocationDTO.class);
 
         return locationDTO;
     }

@@ -41,7 +41,7 @@ public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepos
                 throw  new NotFoundCharacterException("404", "not found character");
             }
             if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
-                throw  new InvalidIdCharacterException("500", "invalid character");
+                throw  new InvalidIdCharacterException("500", "invalid character id");
             }
 
         }

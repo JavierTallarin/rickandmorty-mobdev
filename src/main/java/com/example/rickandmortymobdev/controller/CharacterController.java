@@ -28,7 +28,7 @@ public class CharacterController {
 
         CharacterResponse characterResponse = this.iFindCharacterResponseById.getCharacterResponse(id.orElse(""));
 
-        return new ResponseEntity<>(characterResponse, HttpStatus.OK);
+        return  ResponseEntity.ok(characterResponse);
     }
 
 }

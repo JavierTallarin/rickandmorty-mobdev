@@ -24,7 +24,7 @@ public class ControllerAdvice {
     public ResponseEntity<ErrorDTO> invalidCharacterException(InvalidIdCharacterException exception){
         ErrorDTO errorDTO = ErrorDTO.builder().code("500").message(exception.getMessage()).build();
 
-        return  new ResponseEntity<>(errorDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        return  new ResponseEntity<>(errorDTO, HttpStatus.BAD_GATEWAY);
     }
 
 }

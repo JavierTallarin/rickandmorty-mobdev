@@ -15,6 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.util.Assert;
 
+import java.util.List;
+
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,11 +59,26 @@ public class CharacterResponseServicetest {
         Assert.notNull(locationDTO, "locationDTO is null");
 
     }
-/*
+
     @Test
     void should_Return_Not_Null_GetCharacterResponse() throws Exception {
-        when(this.iRepositoryCharacter.findCharacterById("1")).thenReturn(new CharacterDTO());
 
+        CharacterResponse characterResponseExpected = new CharacterResponse();
+        characterResponseExpected.setId(1);
+
+
+        //Given
+        CharacterDTO characterDTO = new CharacterDTO();
+        characterDTO.setId(1);
+        List<String> episodes = List.of("uno", "dos");
+        characterDTO.setEpisode(episodes);
+
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setUrl("google.cl/1");
+        characterDTO.setOrigin(locationDTO);
+        //when
+        when(this.iRepositoryCharacter.findCharacterById("1")).thenReturn(characterDTO);
+        when(this.iRepositoryLocation.findLocationById("1")).thenReturn(locationDTO);
 
 
         CharacterResponse characterResponse = this.characterResponseService.getCharacterResponse("1");
@@ -70,7 +87,27 @@ public class CharacterResponseServicetest {
         // Asert
         Assert.notNull(characterResponse, "characterResponse is null");
 
-    } */
+    }
+    @Test
+    void should_return_CharacterResponse_without_origin(){
+        CharacterDTO characterDTO = new CharacterDTO();
+        characterDTO.setId(2);
+        List<String> episodes = List.of("uno", "dos", "tres");
+        characterDTO.setEpisode(episodes);
+
+
+        LocationDTO locationDTO = new LocationDTO();
+        characterDTO.setOrigin(locationDTO);
+
+        when(this.iRepositoryCharacter.findCharacterById("2")).thenReturn(characterDTO);
+
+        CharacterResponse characterResponse = this.characterResponseService.getCharacterResponse("2");
+
+        //Assert.isTrue(characterResponse.getOrigin().getResidents().isEmpty(), "CharacterResponse residentes is not empty");
+        Assert.isTrue(characterResponse.getOrigin().getUrl().isEmpty(), "CharacterResponse is not have origin");
+
+    }
+
 
 
 

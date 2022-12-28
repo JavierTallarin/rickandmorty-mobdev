@@ -3,6 +3,7 @@ package com.example.rickandmortymobdev.domain;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.model.LocationDTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class CharacterResponse {
     @JsonProperty("id")

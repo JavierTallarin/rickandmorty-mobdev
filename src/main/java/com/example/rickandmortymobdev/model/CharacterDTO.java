@@ -21,7 +21,6 @@ public class CharacterDTO {
     private Integer episodeCount;
     private LocationDTO origin;
 
-
     private List<String> episode;
 
     public Integer getId() {

@@ -8,11 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Assert;
 
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -53,6 +57,26 @@ public class CharacterControllerTest {
 
         mockMvc.perform(get("/api/v1/1"))
                 .andExpect(status().isOk());
+
+    }
+
+    @Test
+    void should_returrn_200_status_get_contract2() throws Exception{
+        final int statusExpected = 200;
+
+        //given
+        CharacterResponse characterResponse = new CharacterResponse();
+        characterResponse.setId(1);
+
+        when(this.iFindCharacterResponseById.getCharacterResponse("1")).thenReturn(characterResponse);
+
+        //when
+
+        ResponseEntity<CharacterResponse> responseEntity = this.characterController.getContract(Optional.of("1"));
+
+        //then
+        assertEquals(statusExpected, responseEntity.getStatusCodeValue());
+
 
     }
 

@@ -18,7 +18,6 @@ public class ControllerAdvice {
         ErrorDTO errorDTO = ErrorDTO.builder().code("404").message(exception.getMessage()).build();
 
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
-
     }
     @ExceptionHandler(value = InvalidIdCharacterException.class)
     public ResponseEntity<ErrorDTO> invalidCharacterException(InvalidIdCharacterException exception){

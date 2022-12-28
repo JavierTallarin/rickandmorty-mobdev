@@ -1,4 +1,4 @@
-package com.example.rickandmortymobdev;
+package com.example.rickandmortymobdev.service;
 
 import com.example.rickandmortymobdev.controller.CharacterController;
 import com.example.rickandmortymobdev.domain.CharacterResponse;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 import org.springframework.util.Assert;
 
 import static org.mockito.Mockito.when;

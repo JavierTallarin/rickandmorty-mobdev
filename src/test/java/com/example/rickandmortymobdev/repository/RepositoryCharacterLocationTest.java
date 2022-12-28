@@ -1,6 +1,7 @@
 package com.example.rickandmortymobdev.repository;
 
 import com.example.rickandmortymobdev.model.CharacterDTO;
+import com.example.rickandmortymobdev.model.LocationDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,18 +26,48 @@ class RepositoryCharacterLocationTest {
     private String urlBaseLocation;
     private RepositoryCharacterLocation repositoryCharacterLocation;
 
+
     @BeforeEach
     void setUp() {
+        this.urlBaseCharacter = "https://rickandmortyapi.com/api/character/";
+        this.urlBaseLocation = "https://rickandmortyapi.com/api/location/";
+
         this.repositoryCharacterLocation = new RepositoryCharacterLocation(urlBaseCharacter, urlBaseLocation, this.restTemplate);
+
     }
 
     @Test
-    void should_be_characterDTO() throws Exception {
-        when(this.repositoryCharacterLocation.findCharacterById("1")).thenReturn(new CharacterDTO());
+    void should_be_characterDTO_Not_Null() throws Exception {
 
-        CharacterDTO characterDTO = this.repositoryCharacterLocation.findCharacterById("1");
+        CharacterDTO characterDTO = new CharacterDTO();
+        String id="1";
+        characterDTO.setId(1);
+        // injection value is null
 
-        Assert.notNull(characterDTO, "characterDTO is null");
+        when(restTemplate.getForObject(this.urlBaseCharacter.concat(id), CharacterDTO.class)).thenReturn(characterDTO);
+
+        // Llama al método que quieres probar
+        CharacterDTO characterDTOReturn = this.repositoryCharacterLocation.findCharacterById("1");
+
+
+        Assert.notNull(characterDTOReturn, "characterDTO is null");
 
     }
+
+    @Test
+    void should_return_LocationDTO_Not_Null() throws Exception {
+
+        //Given
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setUrl("google.cl");
+        String id="1";
+        when(restTemplate.getForObject(this.urlBaseLocation.concat(id), LocationDTO.class)).thenReturn(locationDTO);
+
+        //when
+        LocationDTO locationDTOReturn = this.repositoryCharacterLocation.findLocationById(id);
+
+        //then
+        Assert.notNull(locationDTOReturn, "LocationDTO instance is null");
+    }
+
 }

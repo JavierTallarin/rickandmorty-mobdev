@@ -1,10 +1,12 @@
 package com.example.rickandmortymobdev.exception;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class InvalidIdCharacterException extends RuntimeException {
     private String code;
     private String message;

@@ -30,7 +30,7 @@ public class CharacterResponseServicetest {
     private IRepositoryLocation iRepositoryLocation;
 
 
-    @BeforeEach
+    @BeforeEach //cada vez en una prueba
     void setup(){
 
         this.characterResponseService = new CharacterResponseService(this.iRepositoryCharacter, this.iRepositoryLocation);

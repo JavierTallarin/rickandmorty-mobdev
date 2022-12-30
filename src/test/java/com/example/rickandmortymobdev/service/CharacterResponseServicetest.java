@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static org.mockito.Mockito.when;
 
@@ -61,7 +62,7 @@ public class CharacterResponseServicetest {
     }
 
     @Test
-    void should_Return_Not_Null_GetCharacterResponse() throws Exception {
+    void should_Return_3_size_episodeCount_GetCharacterResponse() throws Exception {
 
         CharacterResponse characterResponseExpected = new CharacterResponse();
         characterResponseExpected.setId(1);
@@ -69,8 +70,9 @@ public class CharacterResponseServicetest {
 
         //Given
         CharacterDTO characterDTO = new CharacterDTO();
+        Integer expectedSize = 3;
         characterDTO.setId(1);
-        List<String> episodes = List.of("uno", "dos");
+        List<String> episodes = List.of("uno", "dos", "tres");
         characterDTO.setEpisode(episodes);
 
         LocationDTO locationDTO = new LocationDTO();
@@ -86,7 +88,7 @@ public class CharacterResponseServicetest {
 
         // Asert
         Assert.notNull(characterResponse, "characterResponse is null");
-
+        Assert.isTrue(characterResponse.getEpisodeCount().equals(expectedSize), "character response is not size 3 in episode count");
     }
     @Test
     void should_return_CharacterResponse_without_origin(){
@@ -108,6 +110,60 @@ public class CharacterResponseServicetest {
 
     }
 
+    @Test
+    void should_CharacterResponse_instance_with_origin() throws Exception {
+
+        //Given
+        CharacterDTO characterDTO = new CharacterDTO();
+
+        characterDTO.setId(1);
+        List<String> episodes = List.of("uno", "dos", "tres");
+        characterDTO.setEpisode(episodes);
+
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setUrl("javier.cl/1");
+        characterDTO.setOrigin(locationDTO);
+        //when
+        when(this.iRepositoryCharacter.findCharacterById("1")).thenReturn(characterDTO);
+        when(this.iRepositoryLocation.findLocationById("1")).thenReturn(locationDTO);
+
+
+        CharacterResponse characterResponse = this.characterResponseService.getCharacterResponse("1");
+
+
+        // Asert
+        Assert.isTrue(characterResponse.getOrigin().getUrl().length() > 0, "character response is not size 3 in episode count");
+    }
+
+    @Test
+    void should_url_pattern_url_of_origin(){
+
+        //Given
+        final String LINK_PATTERN = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+        final Pattern pattern = Pattern.compile(LINK_PATTERN);
+
+        CharacterDTO characterDTO = new CharacterDTO();
+
+        characterDTO.setId(1);
+        List<String> episodes = List.of("uno", "dos", "tres");
+        characterDTO.setEpisode(episodes);
+
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setUrl("https://rickandmortyapi.com/api/character/1");
+        characterDTO.setOrigin(locationDTO);
+
+        //when
+        when(this.iRepositoryCharacter.findCharacterById("1")).thenReturn(characterDTO);
+        when(this.iRepositoryLocation.findLocationById("1")).thenReturn(locationDTO);
+
+
+        CharacterResponse characterResponse = this.characterResponseService.getCharacterResponse("1");
+
+
+        //then
+        Assert.isTrue(pattern.matcher(characterResponse.getOrigin().getUrl()).matches(), "url is not link pattern");
+
+    }
 
 
 

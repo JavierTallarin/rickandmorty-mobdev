@@ -18,7 +18,7 @@ public class CountResidentsFromCharacter {
         int b = characterDTOList
                 .stream()
                 .reduce(0,
-                        (acc, resident) -> acc + (((resident.getSpecies().equals("Alien"))) ? resident.getLocation().getResidents().size() : 0)
+                        (acc, character) -> acc + (((character.getSpecies().equals("Alien"))) ? character.getLocation().getResidents().size() : 0)
                         , (x, y) -> x+y);
 
         return total.get();

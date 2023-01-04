@@ -15,9 +15,13 @@ public class CharacterDTO {
     private String species;
     private String type;
 
+    private String gender;
+
     // length of list of episodes
     private Integer episodeCount;
     private LocationDTO origin;
+
+    private LocationDTO location;
 
     private List<String> episode;
 
@@ -62,6 +66,14 @@ public class CharacterDTO {
         this.type = type;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public List<String> getEpisode() {
         return episode;
     }
@@ -85,5 +97,13 @@ public class CharacterDTO {
 
     public void setOrigin(LocationDTO origin) {
         this.origin = origin;
+    }
+
+    public LocationDTO getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationDTO location) {
+        this.location = location;
     }
 }

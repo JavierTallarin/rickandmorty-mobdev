@@ -36,7 +36,6 @@ public class CharacterResponse {
     @JsonProperty("origin")
     private LocationDTO origin;
 
-
     public CharacterResponse(CharacterDTO characterDTO, LocationDTO locationDTO) {
         this.id = characterDTO.getId();
         this.name = characterDTO.getName();

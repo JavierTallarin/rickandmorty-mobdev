@@ -15,15 +15,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class OrderedMartianCharactersArrayTest {
+class OrderedMartianCharactersArrayUseCaseTest {
 
     @Mock
     private FindListCharacterRepository findListCharacterRepository;
 
-    private OrderedMartianCharactersArray orderedMartianCharactersArray;
+    @Mock
+    private MartianLanguajeDictionary martianLanguajeDictionary;
+
+    private OrderedMartianCharactersArrayUseCase orderedMartianCharactersArrayUseCase;
     @BeforeEach
     void setUp() {
-        this.orderedMartianCharactersArray = new OrderedMartianCharactersArray(this.findListCharacterRepository);
+        this.orderedMartianCharactersArrayUseCase = new OrderedMartianCharactersArrayUseCase(this.findListCharacterRepository, this.martianLanguajeDictionary);
 
     }
 
@@ -91,9 +94,11 @@ class OrderedMartianCharactersArrayTest {
 
         List<CharacterDTO> list =  List.of(characterDTO6, characterDTO7, characterDTO8, characterDTO9, characterDT10);
 
-        when(this.findListCharacterRepository.execute()).thenReturn(list);
 
-        List<CharacterDTO> listActual = this.orderedMartianCharactersArray.execute();
+        // When
+        when(this.findListCharacterRepository.execute()).thenReturn(list);
+        when(this.martianLanguajeDictionary.execute()).thenReturn(new MartianLanguajeDictionary().execute());
+        List<CharacterDTO> listActual = this.orderedMartianCharactersArrayUseCase.execute();
 
         assertEquals(listExpected, listActual);
 

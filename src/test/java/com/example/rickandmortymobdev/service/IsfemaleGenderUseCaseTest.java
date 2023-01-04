@@ -1,6 +1,5 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.CharacterResponse;
 import com.example.rickandmortymobdev.exception.GenderException;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import com.example.rickandmortymobdev.repository.IRepositoryCharacter;
@@ -9,19 +8,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class IsfemaleGenderTest {
+class IsfemaleGenderUseCaseTest {
     @Mock
     private IRepositoryCharacter iRepositoryCharacter;
-    private IsfemaleGender isfemaleGender;
+    private IsfemaleGenderUseCase isfemaleGenderUseCase;
     @BeforeEach
     void setUp() {
-        this.isfemaleGender = new IsfemaleGender(this.iRepositoryCharacter);
+        this.isfemaleGenderUseCase = new IsfemaleGenderUseCase(this.iRepositoryCharacter);
     }
 
     @Test
@@ -38,7 +36,7 @@ class IsfemaleGenderTest {
         when(this.iRepositoryCharacter.findCharacterById(id)).thenReturn(characterDTOExpected);
 
 
-        CharacterDTO characterDTOActual = this.isfemaleGender.execute(id);
+        CharacterDTO characterDTOActual = this.isfemaleGenderUseCase.execute(id);
 
         //then
 
@@ -58,7 +56,7 @@ class IsfemaleGenderTest {
         //when
         when(this.iRepositoryCharacter.findCharacterById(id)).thenReturn(characterDTOExpected);
 
-        assertThrows(GenderException.class, () -> this.isfemaleGender.execute(id));
+        assertThrows(GenderException.class, () -> this.isfemaleGenderUseCase.execute(id));
     }
 
 }

@@ -1,16 +1,14 @@
 package com.example.rickandmortymobdev.service;
 
-import com.example.rickandmortymobdev.domain.CharacterResponse;
 import com.example.rickandmortymobdev.exception.GenderException;
 import com.example.rickandmortymobdev.model.CharacterDTO;
-import com.example.rickandmortymobdev.model.LocationDTO;
 import com.example.rickandmortymobdev.repository.IRepositoryCharacter;
 import org.springframework.http.HttpStatus;
 
-public class IsfemaleGender {
+public class IsfemaleGenderUseCase {
     private final IRepositoryCharacter iRepositoryCharacter;
 
-    public IsfemaleGender(IRepositoryCharacter iRepositoryCharacter) {
+    public IsfemaleGenderUseCase(IRepositoryCharacter iRepositoryCharacter) {
         this.iRepositoryCharacter = iRepositoryCharacter;
     }
     public CharacterDTO execute(String id){

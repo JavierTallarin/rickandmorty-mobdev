@@ -10,12 +10,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
-class IsOriginEqualLocationCharacterTest {
+class IsOriginEqualLocationCharacterUseCaseTest {
 
-    private IsOriginEqualLocationCharacter isOriginEqualLocationCharacter;
+    private IsOriginEqualLocationCharacterUseCase isOriginEqualLocationCharacterUseCase;
     @BeforeEach
     void setUp() {
-        this.isOriginEqualLocationCharacter = new IsOriginEqualLocationCharacter();
+        this.isOriginEqualLocationCharacterUseCase = new IsOriginEqualLocationCharacterUseCase();
     }
     @Test
     void should_return_true_when_origin_and_location_are_equal() {
@@ -31,7 +31,7 @@ class IsOriginEqualLocationCharacterTest {
         characterDTOExpected.setLocation(location);
 
         //when
-        boolean actual = isOriginEqualLocationCharacter.execute(characterDTOExpected);
+        boolean actual = isOriginEqualLocationCharacterUseCase.execute(characterDTOExpected);
 
         //then
         assertEquals(expected, actual);
@@ -52,7 +52,7 @@ class IsOriginEqualLocationCharacterTest {
         //when
 
         //then
-        assertThrows(LocationException.class, () -> this.isOriginEqualLocationCharacter.execute(characterDTOExpected));
+        assertThrows(LocationException.class, () -> this.isOriginEqualLocationCharacterUseCase.execute(characterDTOExpected));
 
     }
 }

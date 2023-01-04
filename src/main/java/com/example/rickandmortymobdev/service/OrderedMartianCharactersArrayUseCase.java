@@ -6,12 +6,14 @@ import com.example.rickandmortymobdev.repository.FindListCharacterRepository;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class OrderedMartianCharactersArray {
+public class OrderedMartianCharactersArrayUseCase {
 
     private final FindListCharacterRepository findListCharacterRepository;
+    private final MartianLanguajeDictionary martianLanguajeDictionary;
 
-    public OrderedMartianCharactersArray(FindListCharacterRepository findListCharacterRepository) {
+    public OrderedMartianCharactersArrayUseCase(FindListCharacterRepository findListCharacterRepository, MartianLanguajeDictionary martianLanguajeDictionary) {
         this.findListCharacterRepository = findListCharacterRepository;
+        this.martianLanguajeDictionary = martianLanguajeDictionary;
     }
 
 
@@ -19,12 +21,8 @@ public class OrderedMartianCharactersArray {
 
         List<CharacterDTO> listCharacters = new ArrayList<>(this.findListCharacterRepository.execute());
 
-        Map<String, String> martianLanguaje= new HashMap<String, String>();
-        martianLanguaje.put("a", "1");
-        martianLanguaje.put("e", "2");
-        martianLanguaje.put("i", "3");
-        martianLanguaje.put("o", "4");
-        martianLanguaje.put("u", "5");
+        Map<String, String> martianLanguaje= this.martianLanguajeDictionary.execute();
+
 
         List<CharacterDTO> listOrdeneredMartianLanguaje;
 

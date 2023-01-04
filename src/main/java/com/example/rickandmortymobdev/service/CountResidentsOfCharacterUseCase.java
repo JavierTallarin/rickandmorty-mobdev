@@ -5,7 +5,7 @@ import com.example.rickandmortymobdev.model.CharacterDTO;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class CountResidentsFromCharacter {
+public class CountResidentsOfCharacterUseCase {
     public Integer execute(List<CharacterDTO> characterDTOList){
         AtomicReference<Integer> total = new AtomicReference<>(0);
 

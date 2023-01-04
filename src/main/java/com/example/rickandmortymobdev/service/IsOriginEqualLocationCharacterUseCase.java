@@ -4,7 +4,7 @@ import com.example.rickandmortymobdev.exception.LocationException;
 import com.example.rickandmortymobdev.model.CharacterDTO;
 import org.springframework.http.HttpStatus;
 
-public class IsOriginEqualLocationCharacter {
+public class IsOriginEqualLocationCharacterUseCase {
 
     public boolean execute(CharacterDTO characterDTO){
         if(characterDTO.getOrigin().getName().equals("unknown") || characterDTO.getLocation().getName().equals("unknown")){

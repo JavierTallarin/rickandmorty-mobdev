@@ -9,14 +9,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CountResidentsFromCharacterTest {
+class CountResidentsOfCharacterUseCaseTest {
 
-    private CountResidentsFromCharacter countResidentsFromCharacter;
+    private CountResidentsOfCharacterUseCase countResidentsOfCharacterUseCase;
 
     @BeforeEach
     void setUp() {
-        this.countResidentsFromCharacter = new CountResidentsFromCharacter();
+        this.countResidentsOfCharacterUseCase = new CountResidentsOfCharacterUseCase();
     }
+
+
 
     @Test
     void should_return_count_residents_from_character(){
@@ -47,7 +49,7 @@ class CountResidentsFromCharacterTest {
 
 
         // When
-        Integer countResuidentsActual = this.countResidentsFromCharacter.execute(list);
+        Integer countResuidentsActual = this.countResidentsOfCharacterUseCase.execute(list);
 
         // Then
         assertSame(countResuidentsExpected, countResuidentsActual);

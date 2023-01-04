@@ -9,10 +9,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @ExtendWith(MockitoExtension.class)
 class OrderedMartianCharactersArrayUseCaseTest {
@@ -27,6 +32,55 @@ class OrderedMartianCharactersArrayUseCaseTest {
     @BeforeEach
     void setUp() {
         this.orderedMartianCharactersArrayUseCase = new OrderedMartianCharactersArrayUseCase(this.findListCharacterRepository, this.martianLanguajeDictionary);
+
+    }
+    @Test
+    void should_return_correct_dictionary_language_martian()  {
+        Map<String, String> martianLanguageExpected = new HashMap<String, String>();
+        martianLanguageExpected.put("a", "1");
+        martianLanguageExpected.put("e", "2");
+        martianLanguageExpected.put("i", "3");
+        martianLanguageExpected.put("o", "4");
+        martianLanguageExpected.put("u", "5");
+
+        // Given
+
+        // When
+        when(this.martianLanguajeDictionary.execute()).thenReturn(new MartianLanguajeDictionary().execute());
+        Map<String, String> martianLanguageActual = this.martianLanguajeDictionary.execute();
+
+
+        // Then
+        assertEquals(martianLanguageExpected, martianLanguageActual);
+        verify(this.martianLanguajeDictionary, times(1)).execute();
+
+    }
+
+    @Test
+    void should_return_list_characters_with_size_between_1(){
+        Integer sizeMinExpected = 1;
+        // Given
+
+        // When
+        when(this.findListCharacterRepository.execute()).thenReturn(new FindListCharacterRepository().execute());
+        List<CharacterDTO> characterDTOListActual = this.findListCharacterRepository.execute();
+
+        // Then
+
+        assertTrue(characterDTOListActual.size() >= sizeMinExpected);
+
+
+
+    }
+
+
+    @Test
+    void should_return_ordered_without_martian_language(){
+        // Given
+
+        // When
+        // Then
+
 
     }
 

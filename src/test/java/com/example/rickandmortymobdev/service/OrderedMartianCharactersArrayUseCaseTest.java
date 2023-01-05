@@ -9,10 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -53,6 +50,7 @@ class OrderedMartianCharactersArrayUseCaseTest {
         // Then
         assertEquals(martianLanguageExpected, martianLanguageActual);
         verify(this.martianLanguajeDictionary, times(1)).execute();
+        verify(this.findListCharacterRepository, times(0)).execute();
 
     }
 
@@ -66,10 +64,7 @@ class OrderedMartianCharactersArrayUseCaseTest {
         List<CharacterDTO> characterDTOListActual = this.findListCharacterRepository.execute();
 
         // Then
-
         assertTrue(characterDTOListActual.size() >= sizeMinExpected);
-
-
 
     }
 
@@ -77,11 +72,78 @@ class OrderedMartianCharactersArrayUseCaseTest {
     @Test
     void should_return_ordered_without_martian_language(){
         // Given
+        List<CharacterDTO> list = null;
+        List<CharacterDTO> listExpected = null;
+        LocationDTO mars = new LocationDTO();
+        mars.setName("Mars");
+        LocationDTO other = new LocationDTO();
+        other.setName("Earth");
+        CharacterDTO characterDTO1 = new CharacterDTO();
+        characterDTO1.setId(1);
+        characterDTO1.setName("javier");
+        characterDTO1.setLocation(other);
+
+        CharacterDTO characterDTO2 = new CharacterDTO();
+        characterDTO2.setId(4);
+        characterDTO2.setName("Alien");
+        characterDTO2.setLocation(other);
+
+        CharacterDTO characterDTO3 = new CharacterDTO();
+        characterDTO3.setId(2);
+        characterDTO3.setName("ET");
+        characterDTO3.setLocation(other);
+
+        CharacterDTO characterDTO4 = new CharacterDTO();
+        characterDTO4.setId(3);
+        characterDTO4.setName("belen");
+        characterDTO4.setLocation(other);
+
+        CharacterDTO characterDTO5 = new CharacterDTO();
+        characterDTO5.setId(5);
+        characterDTO5.setName("predator");
+        characterDTO5.setLocation(other);
+
+        list = List.of(characterDTO1, characterDTO2, characterDTO3, characterDTO4, characterDTO5);
+        listExpected = List.of(characterDTO2, characterDTO4, characterDTO3, characterDTO1, characterDTO5);
 
         // When
+        when(this.findListCharacterRepository.execute()).thenReturn(list);
+        List<CharacterDTO> listActual = this.orderedMartianCharactersArrayUseCase.execute();
+
         // Then
+        assertEquals(listExpected, listActual);
+        verify(this.martianLanguajeDictionary, times(1)).execute();
+        verify(this.findListCharacterRepository, times(1)).execute();
 
+    }
 
+    @Test
+    void should_return_array_size_1_with_martian_language() throws Exception{
+        // Given
+        LocationDTO mars = new LocationDTO();
+        mars.setName("Mars");
+        CharacterDTO characterDTO1 = new CharacterDTO();
+        CharacterDTO characterDTO2 = new CharacterDTO();
+        characterDTO1.setId(1);
+        characterDTO1.setName("ET");
+        characterDTO1.setLocation(mars);
+        characterDTO2.setId(1);
+        characterDTO2.setName("2T");
+        characterDTO2.setLocation(mars);
+
+        List<CharacterDTO> list = List.of(characterDTO1);
+        List<CharacterDTO> listExpected = List.of(characterDTO2);
+
+        // When
+        when(this.findListCharacterRepository.execute()).thenReturn(list);
+        when(this.martianLanguajeDictionary.execute()).thenReturn(new MartianLanguajeDictionary().execute());
+
+        List<CharacterDTO> listActual = this.orderedMartianCharactersArrayUseCase.execute();
+
+        // Then
+        assertEquals(listExpected, listActual);
+        verify(this.martianLanguajeDictionary, times(1)).execute();
+        verify(this.findListCharacterRepository, times(1)).execute();
     }
 
     @Test

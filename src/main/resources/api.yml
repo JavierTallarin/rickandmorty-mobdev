@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "1.0.0"
-  title: "On Boarding API"
+  title: "rick and morty api javier"
 schemes:
   - "http"
 consumes:

@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "On Boarding API"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+tags:
+  - name: characters
+    description: Everything about Characters
+
+paths:
+
+  /api/v1{id}:
+    get:
+      tags:
+        - characters
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          minimum: 1
+          description: The ID of character to return.
+      description: "Return a character"
+      operationId: "getCharacterById"
+      responses:
+        "200":
+          description: "A character by id."
+          schema:
+            $ref: "#/definitions/CharacterResponse"
+        "502":
+          description: "rick and morty external service rejects request for invalid id."
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+        "404":
+          description: "Character not found."
+          schema:
+            $ref: "#/definitions/ErrorDTO"
+
+
+definitions:
+  CharacterDTO:
+    type: "object"
+    required:
+      - "id"
+      - "name"
+      - "status"
+      - "species"
+      - "type"
+      - "gender"
+      - "origin"
+      - "location"
+      - "episode"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      status:
+        type: "string"
+      species:
+        type: "string"
+      type:
+        type: "string"
+      gender:
+        type: "string"
+      origin:
+        $ref: "#/definitions/LocationDTO"
+      location:
+        $ref: "#/definitions/LocationDTO"
+      episode:
+        type: "array"
+        items:
+          type: "string"
+
+  CharacterResponse:
+    type: "object"
+    required:
+      - "id"
+      - "name"
+      - "status"
+      - "species"
+      - "type"
+      - "episode_count"
+      - "origin"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      status:
+        type: "string"
+      species:
+        type: "string"
+      type:
+        type: "string"
+      episode_count:
+        type: "integer"
+      location:
+        $ref: "#/definitions/LocationDTO"
+
+  LocationDTO:
+    type: "object"
+    required:
+      - "name"
+      - "url"
+      - "dimension"
+      - "residents"
+    properties:
+      name:
+        type: "string"
+      url:
+        type: "string"
+      dimension:
+        type: "string"
+      residents:
+        type: "array"
+        items:
+          type: "string"
+
+  ErrorDTO:
+    type: "object"
+    required:
+      - "message"
+      - "code"
+    properties:
+      message:
+        type: "string"
+      code:
+        type: "string"

@@ -39,7 +39,7 @@ public class RepositoryCharacterLocation implements IRepositoryCharacter, IRepos
         }catch (HttpStatusCodeException ex){
 
             if(ex.getStatusCode() == HttpStatus.NOT_FOUND){
-                throw  new NotFoundCharacterException(String.valueOf(HttpStatus.NOT_FOUND.value()), "not found character");
+                throw  new NotFoundCharacterException(String.valueOf(HttpStatus.NOT_FOUND.value()), "character not found");
             }
             if(ex.getStatusCode() == HttpStatus.INTERNAL_SERVER_ERROR) {
                 throw  new InvalidIdCharacterException(String.valueOf(HttpStatus.BAD_GATEWAY.value()), "rick and morty external service rejects request for invalid id");

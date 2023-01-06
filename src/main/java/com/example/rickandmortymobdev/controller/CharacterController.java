@@ -24,7 +24,7 @@ public class CharacterController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CharacterResponse> getContract(@PathVariable Optional<String> id){
+    public ResponseEntity<CharacterResponse> getCharacterById(@PathVariable Optional<String> id){
 
         CharacterResponse characterResponse = this.iFindCharacterResponseById.getCharacterResponse(id.orElse(""));
 

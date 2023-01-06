@@ -72,7 +72,7 @@ public class CharacterControllerTest {
 
         //when
 
-        ResponseEntity<CharacterResponse> responseEntity = this.characterController.getContract(Optional.of("1"));
+        ResponseEntity<CharacterResponse> responseEntity = this.characterController.getCharacterById(Optional.of("1"));
 
         //then
         assertEquals(statusExpected, responseEntity.getStatusCodeValue());

@@ -17,8 +17,6 @@ public class CharacterDTO {
 
     private String gender;
 
-    // length of list of episodes
-    private Integer episodeCount;
     private LocationDTO origin;
 
     private LocationDTO location;
@@ -82,14 +80,6 @@ public class CharacterDTO {
         this.episode = episode;
     }
 
-
-    public Integer getEpisodeCount() {
-        return episodeCount;
-    }
-
-    public void setEpisodeCount(Integer episodeCount) {
-        this.episodeCount = episodeCount;
-    }
 
     public LocationDTO getOrigin() {
         return origin;
